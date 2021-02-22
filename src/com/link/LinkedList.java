@@ -1,6 +1,11 @@
 package com.link;
 
 
+import sun.awt.image.ImageWatched;
+
+import java.util.HashSet;
+import java.util.Set;
+
 public class LinkedList {
 
     Node head;
@@ -206,6 +211,97 @@ return l;
         return sum;
     }
 
+    public static LinkedList listRev(LinkedList l){
+        LinkedList revlist = new LinkedList();
+        Node curr = l.head;
+
+        while(curr!=null){
+            Node new_node = new Node();
+            if(curr.next==null) {
+                revlist.head = new_node;
+
+            }
+
+
+        }
+
+        return revlist;
+    }
+
+
+        public static Node getIntersectionNode(Node headA, Node headB) {
+            Set<Node> hs = new HashSet();
+
+            while(headA != null){
+                hs.add(headA);
+                headA = headA.next;
+            }
+
+            while(headB != null){
+                if(hs.contains(headB))
+                    return headB;
+                headB = headB.next;
+
+            }
+
+            return null;
+
+        }
+
+
+    public static Node swapPairs(Node head) {
+
+        if (head == null)
+            return null;
+        if (head.next == null)
+            return head;
+        Node first = head;
+        Node second = first.next;
+        Node third = second.next;
+        int count = 0;
+        if(third == null) {
+            second.next = first;
+            first.next = null;
+            head = second;
+            System.out.println();
+            while(head!=null){
+                System.out.print(head.data+" ");
+                head=head.next;
+            return head;
+            }
+        }
+        while (second != null && third != null) {
+            if (count == 0)
+                head = second;
+            if(third.next!=null)
+                first.next = third.next;
+            else
+                first.next = third;
+            second.next = first;
+
+            first = third;
+           // if(third.next!=null)
+                second = third.next;
+            if(second!=null)
+                third = second.next;
+            count++;
+        }
+        if(third == null){
+
+            first.next = second.next;
+            second.next = first;
+        }
+        if(second == null){
+
+        }
+System.out.println();
+        while(head!=null){
+            System.out.print(head.data+" ");
+            head=head.next;
+        }
+        return head;
+    }
+
     public static void main(String[] args){
 
        /* LinkedList l = new LinkedList();
@@ -242,25 +338,24 @@ return l;
     */
 
         LinkedList l1 = new LinkedList();
-        l1.insertattail(l1,4);
-        l1.insertattail(l1,3);
+        l1.insertattail(l1,1);
         l1.insertattail(l1,2);
-        l1.insertattail(l1,2);
-        l1.insertattail(l1,2);
+       // l1.insertattail(l1,3);
+       /* l1.insertattail(l1,4);
+        l1.insertattail(l1,5);
+
+        l1.insertattail(l1,6);
+       /* l1.insertattail(l1,7);
+        l1.insertattail(l1,8);
+        l1.insertattail(l1,9);
+        l1.insertattail(l1,0);*/
+       // l1.insertattail(l1,11);
         display(l1);
-        LinkedList l2 = new LinkedList();
-        l2.insertattail(l2,7);
-        l2.insertattail(l2,6);
-        l2.insertattail(l2,3);
-        l2.insertattail(l2,7);
-        l2.insertattail(l2,6);
-        l2.insertattail(l2,3);
-        display(l2);
-
+        Node n = swapPairs(l1.head);
         LinkedList l3 = new LinkedList();
-
-        l3 = sum(l1,l2);
-        display(l3);
+       // display(l1);
+       // l3 = sum(l1,l2);
+        //display(l3);
 
     }
 
